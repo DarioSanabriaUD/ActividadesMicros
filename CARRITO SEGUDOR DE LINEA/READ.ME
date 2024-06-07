@@ -1,14 +1,47 @@
 CAMARA
 
-
+Este código en Python importa varios módulos y utiliza diferentes bibliotecas para controlar dispositivos de hardware como un sensor de cámara OV7670 y un display OLED. Aquí hay una breve explicación de lo que hace cada parte del código:
+Se importan los módulos necesarios: sys, time, pwmio, digitalio, busio y board.
+Se definen los pines de salida PWM y se configuran con una frecuencia de 2000Hz.
+Se intenta importar la biblioteca "adafruit_ssd1306" para controlar una pantalla OLED, pero está comentada.
+Se importa el módulo "adafruit_ov7670" para controlar el sensor de la cámara OV7670.
+Se inicializa la comunicación I2C para la cámara OV7670.
+Se configuran los pines de datos y control para la cámara OV7670.
+Se ajustan algunas configuraciones de la cámara como el tamaño de la imagen, el espacio de color y la orientación vertical.
+Se imprime el ancho y alto de la imagen capturada por la cámara.
+Se crean un buffer de píxeles para almacenar la imagen capturada.
+Se inicializan algunas variables para diferentes propósitos, como el procesamiento de la imagen capturada.
+Este código sirve para controlar un sensor de cámara OV7670 utilizando CircuitPython en una placa de desarrollo que tenga un microcontrolador compatible. También muestra cómo se pueden utilizar diferentes bibliotecas para controlar dispositivos de hardware y realizar tareas específicas como la captura de imágenes y la visualización en una pantalla OLED.
 
 
 OLED
 
+Este código sirve para utilizar un sensor de RPM para simular un tacómetro en una pantalla OLED.
+Primero importamos las librerías necesarias, como machine para controlar el hardware, ssd1306 para la pantalla OLED y time para gestionar el tiempo. También importamos random para generar valores aleatorios de RPM.
+Luego configuramos la pantalla OLED y definimos las coordenadas y dimensiones de las barras y la posición de la flecha en el tacómetro.
+La función get_random_rpm() genera un valor aleatorio de RPM dentro de un rango específico.
+La función get_arrow_direction(rpm) determina la dirección en la que apunta la flecha en función del valor de RPM.
+La función draw_tachometer(rpm) se encarga de dibujar en la pantalla OLED el tacómetro con las barras que indican el nivel de RPM, los valores de RPM, y la dirección de la flecha.
+Finalmente, en un bucle infinito se genera un valor aleatorio de RPM, se dibuja el tacómetro en la pantalla y se actualiza cada segundo.
 
 
 PERCEPTRON
 
+Este código es una implementación de un perceptrón, un tipo de red neuronal simple. Aquí se define una clase Perceptron con métodos para inicializar los pesos y el sesgo, realizar una predicción basada en las entradas y los pesos, y entrenar el perceptrón ajustando los pesos.
+El método train realiza el entrenamiento del perceptrón con un conjunto de datos de entrenamiento y etiquetas correspondientes, ajustando los pesos en función del error y la tasa de aprendizaje a través de varias épocas.
+El código también incluye un bucle principal que captura una imagen y procesa los píxeles de esa imagen para determinar ciertas características como un promedio de píxeles en diferentes secciones de la imagen. Basado en estos datos, se toman decisiones para ajustar los valores de los motores de un robot en función de ciertas condiciones identificadas.
+Además, hay una sección que comprueba si un botón está presionado y, en ese caso, invoca la función train_perceptron para volver a entrenar el perceptrón con los nuevos datos.
+El código combina un perceptrón para tomar decisiones basadas en datos de entrada con la lógica de control de un robot basada en la visión de una cámara y el procesamiento de imágenes.
 
 
 Q-LEARNNING
+
+El código proporciona una implementación del algoritmo Q-Learning en un entorno simulado en el que un agente toma decisiones basadas en un conjunto de estados y acciones. A continuación, se describen las principales partes del código:
+Clase QLearningAgent: Esta clase define un agente Q-Learning con métodos para elegir una acción, actualizar la tabla Q y obtener el estado actual. Al crear una instancia de la clase, se especifica el número de estados, acciones y otros parámetros relacionados con el aprendizaje.
+Funciones choose_action y update: El método choose_action elige una acción utilizando la estrategia epsilon-greedy, que equilibra la exploración y la explotación. El método update actualiza la tabla Q con las recompensas recibidas y ajusta los valores de Q basados en el error temporal.
+Función get_state: Esta función convierte los píxeles de entrada en un estado binario utilizando una lógica específica. Los píxeles se dividen en categorías (1 o 0) y se genera un estado en función de estos valores.
+Bucle principal: En este bucle, se capturan las imágenes de una simulación y se procesan las filas de píxeles para tomar decisiones basadas en las mediciones de luz recibidas por una cámara. Dependiendo de las intensidades de luz detectadas, se realizan ajustes en los motores para seguir una línea o navegar por curvas.
+Comentarios y lógica condicional: En el código, hay secciones comentadas y lógica condicional que especifica las acciones a tomar en diferentes escenarios, como centrarse, girar a la derecha o la izquierda, o seguir una recta a máxima velocidad. Estas instrucciones muestran las reglas de comportamiento del agente en respuesta a ciertos estímulos.
+Actualización del agente Q-Learning: Al final del bucle principal, se llama al método update del agente Q-Learning con la recompensa y el nuevo estado obtenido. Esto actualiza las tablas Q del agente y mejora su capacidad para tomar decisiones óptimas en futuras iteraciones.
+El código muestra el  aprendizaje reforzado utilizando el algoritmo Q-Learning, donde un agente toma decisiones basadas en la información sensorial recibida y aprende a optimizar su comportamiento para maximizar una recompensa.
+
